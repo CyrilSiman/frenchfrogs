@@ -42,8 +42,10 @@ class Csv extends \FrenchFrogs\Renderer\Renderer
 
         //@todo mettre en place un streaming pour économiser la memoire
 
+
         // insertion des lignes
         foreach ($table->getRows() as $row) {
+            a($row);
             $line = [];
             foreach (array_keys($header) as $index) {
                 $line[] = $columns[$index]->getValue($row);
