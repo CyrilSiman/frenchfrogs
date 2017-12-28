@@ -5,7 +5,7 @@
   "source": {
     "url": "https://github.com/cyrilsiman/frenchfrogs.git",
     "type": "git",
-    "reference": "origin/master"
+    "reference": "origin/fix_jb"
   },
   "keywords": [
     "laravel",
