@@ -1,9 +1,9 @@
 {
-  "name": "cotcotquedec/frenchfrogs",
+  "name": "cyrilsiman/frenchfrogs",
   "description": "Framework backoffice construit sur laravel",
   "type": "library",
   "source": {
-    "url": "https://github.com/cotcotquedec/frenchfrogs.git",
+    "url": "https://github.com/cyrilsiman/frenchfrogs.git",
     "type": "git",
     "reference": "origin/fix_jb"
   },
@@ -19,7 +19,7 @@
     "form",
     "plugins"
   ],
-  "homepage": "https://github.com/cotcotquedec/frenchfrogs.git",
+  "homepage": "https://github.com/cyrilsiman/frenchfrogs.git",
   "licence": "GPL-3.0+",
   "authors": [
     {
