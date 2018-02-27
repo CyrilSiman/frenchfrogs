@@ -58,7 +58,7 @@ class Select extends Element
     public function setValue($value)
     {
 
-        if ($this->isMultiple()) {
+        if (!empty($value) && $this->isMultiple()) {
             $value = (array) $value;
         }
 
