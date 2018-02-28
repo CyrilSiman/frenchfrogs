@@ -156,17 +156,21 @@ $.fn.extend({
             var _this = $(this);
             var _parent = _this.parent();
 
-            // ajout du compteur
-            $('<div class="pull-right"><span class="txt-current"></span><span class="txt-max"></span></div>')
+            // ajout du compteur if nécessary
+            if(! ($(this).next().hasClass("pull-right") && ($(this).next().children(":first").hasClass("txt-current")))) {
+
+                $('<div class="pull-right"><span class="txt-current"></span><span class="txt-max"></span></div>')
                 .insertAfter(_this);
 
-            _parent.find('span.txt-max').html(" / " + _this.prop('maxlength'));
+                _parent.find('span.txt-max').html(" / " + _this.prop('maxlength'));
 
-            _this.on("click mousedown mouseup focus blur keydown change", function () {
-                _parent.find('span.txt-current').text($(this).val().length);
-            });
+                _this.on("click mousedown mouseup focus blur keydown change", function () {
+                    _parent.find('span.txt-current').text($(this).val().length);
+                });
 
-            _this.change();
+                _this.change();
+            }
+            
         });
 
         // CALLBACK
