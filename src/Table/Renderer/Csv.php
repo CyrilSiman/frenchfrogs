@@ -25,6 +25,9 @@ class Csv extends \FrenchFrogs\Renderer\Renderer
         // INitilisation du CSV
         $csv = Writer::createFromFileObject(new \SplTempFileObject());
 
+        if($table->getCSVSeparator()){
+            $csv->setDelimiter($table->getCSVSeparator());
+        }
 
         // gestion des colonne
         $header = $columns = [];

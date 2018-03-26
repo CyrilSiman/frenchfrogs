@@ -13,6 +13,11 @@ trait Export
 {
 
     /**
+     * @var
+     */
+    protected $CSV_seperator;
+
+    /**
      * Nom du fichier d'export par default
      *
      */
@@ -108,6 +113,23 @@ trait Export
     {
         return !empty($this->filename);
     }
+
+
+    /**
+     * Setter for CSV seperator
+     */
+    public function setCSVSeparator($separator) {
+        $this->CSV_seperator = $separator;
+        return $this;
+    }
+
+    /**
+     * Getter for CSV seperator
+     */
+    public function getCSVSeparator() {
+        return $this->CSV_seperator;
+    }
+
 
     /**
      * Export dans un fichier CSV
