@@ -1,7 +1,7 @@
 <?php namespace FrenchFrogs\Table\Column;
 
 
-class Custom extends Column
+class Custom extends Column implements Exportable
 {
 
     protected $custom;
@@ -76,12 +76,7 @@ class Custom extends Column
      * @throws \Exception
      */
     public function getValue($row) {
-
-        $value = isset($row[$this->getName()]) ? $row[$this->getName()] : '';
-        if ($this->hasFilterer()) {
-            $value = $this->getFilterer()->filter($value);
-        }
-        return $value;
+        return call_user_func($this->getCustom(), $row);
     }
 
     /**
