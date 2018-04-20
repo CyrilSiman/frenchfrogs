@@ -278,4 +278,141 @@ class Model extends \Illuminate\Database\Eloquent\Model
 
         $this->setAttribute($keyName, $id);
     }
+
+    /**
+     * Convert the object into something JSON serializable.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArrayForJSON();
+    }
+
+     /**
+     * Convert the model instance to an array.
+     *
+     * @return array
+     */
+    public function toArrayForJSON()
+    {      
+        return array_merge($this->attributesToArrayForJSON(), $this->relationsToArray());
+    }
+
+     /**
+     * Convert the model's attributes to an array.
+     *
+     * @return array
+     */
+    public function attributesToArrayForJSON()
+    {
+        // If an attribute is a date, we will cast it to a string after converting it
+        // to a DateTime / Carbon instance. This is so we will get some consistent
+        // formatting while accessing attributes vs. arraying / JSONing a model.
+        $attributes = $this->addDateAttributesToArray(
+            $attributes = $this->getArrayableAttributes()
+        );   
+
+        $attributes = $this->addMutatedAttributesToArray(
+            $attributes, $mutatedAttributes = $this->getMutatedAttributes()
+        );
+
+        // Next we will handle any casts that have been setup for this model and cast
+        // the values to their appropriate type. If the attribute has a mutator we
+        // will not perform the cast on those attributes to avoid any confusion.
+        $attributes = $this->addCastAttributesToArrayForJSON(
+            $attributes, $mutatedAttributes
+        );
+
+        // Here we will grab all of the appended, calculated attributes to this model
+        // as these attributes are not really in the attributes array, but are run
+        // when we need to array or JSON the model for convenience to the coder.
+        foreach ($this->getArrayableAppends() as $key) {
+            $attributes[$key] = $this->mutateAttributeForArray($key, null);
+        }
+
+        return $attributes;
+    }
+
+       /**
+     * Add the casted attributes to the attributes array.
+     *
+     * @param  array  $attributes
+     * @param  array  $mutatedAttributes
+     * @return array
+     */
+    protected function addCastAttributesToArrayForJSON(array $attributes, array $mutatedAttributes)
+    {
+      
+        foreach ($this->getCasts() as $key => $value) {
+            if (! array_key_exists($key, $attributes) || in_array($key, $mutatedAttributes)) {
+                continue;
+            }
+
+            // Here we will cast the attribute. Then, if the cast is a date or datetime cast
+            // then we will serialize the date for the array. This will convert the dates
+            // to strings based on the date format specified for these Eloquent models.
+            $attributes[$key] = $this->castAttributeForJSON(
+                $key, $attributes[$key]
+            );
+
+            // If the attribute cast was a date or a datetime, we will serialize the date as
+            // a string. This allows the developers to customize how dates are serialized
+            // into an array without affecting how they are persisted into the storage.
+            if ($attributes[$key] &&
+                ($value === 'date' || $value === 'datetime')) {
+                $attributes[$key] = $this->serializeDate($attributes[$key]);
+            }
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * Cast an attribute to a native PHP type.
+     *
+     * @param  string  $key
+     * @param  mixed  $value
+     * @return mixed
+     */
+    protected function castAttributeForJSON($key, $value)
+    {
+        if (is_null($value)) {
+            return $value;
+        }
+
+        switch ($this->getCastType($key)) {
+            case 'int':
+            case 'integer':
+                return (int) $value;
+            case 'real':
+            case 'float':
+            case 'double':
+                return (float) $value;
+            case 'string':
+                return (string) $value;
+            case 'bool':
+            case 'boolean':
+                return (bool) $value;
+            case 'object':
+                return $this->fromJson($value, true);
+            case 'array':
+            case 'json':
+                return $this->fromJson($value);
+            case 'collection':
+                return new BaseCollection($this->fromJson($value));
+            case 'date':
+                return $this->asDate($value);
+            case 'datetime':
+                return $this->asDateTime($value);
+            case 'timestamp':
+                return $this->asTimestamp($value);
+            case static::BINARY16_UUID:
+                return \Webpatser\Uuid\Uuid::import($value)->hex;
+            case static::NENUPHAR :
+                return '';
+            default:
+                return $value;
+        }
+    }
 }
