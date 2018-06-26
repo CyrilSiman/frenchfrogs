@@ -35,15 +35,16 @@ class Bootstrap extends Renderer
 
         $html = '';
 
+        if ($modal->hasTitle()) {
+            $html .= html('h5', ['class' => Style::MODAL_HEADER_TITLE_CLASS], $modal->getTitle());
+        }
+
         // header
         if ($modal->hasCloseButton()) {
             $html .= html('button', ['type' => 'button', 'class' => 'close', 'data-dismiss' => 'modal', 'aria-label' => $modal->getCloseButtonLabel()], '<span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>');
         }
 
-        if ($modal->hasTitle()) {
-            $html .= html('h4', ['class' => Style::MODAL_HEADER_TITLE_CLASS], $modal->getTitle());
-            $html = html('div', ['class' => Style::MODAL_HEADER_CLASS], $html);
-        }
+        $html = html('div', ['class' => Style::MODAL_HEADER_CLASS], $html);
 
         // body
         $html .= html('div', ['class' => Style::MODAL_BODY_CLASS], $modal->getBody());

@@ -19,12 +19,13 @@ class Modal extends Bootstrap
             $html .= csrf_field();
         }
 
+        if ($form->hasLegend()) {
+            $html .= html('h5', ['class' => Style::MODAL_HEADER_TITLE_CLASS], $form->getLegend());
+        }
+
         // Close button
         $html .= html('button', ['type' => 'button', 'class' => 'close', 'data-dismiss' => 'modal'], '<span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>');
 
-        if ($form->hasLegend()) {
-            $html .= html('h4', ['class' => Style::MODAL_HEADER_TITLE_CLASS], $form->getLegend());
-        }
 
         $html = html('div', ['class' => Style::MODAL_HEADER_CLASS], $html);
 

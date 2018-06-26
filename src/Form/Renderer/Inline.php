@@ -114,7 +114,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // REQUIRED
@@ -133,7 +133,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 
@@ -164,7 +164,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
 
@@ -183,7 +183,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 
@@ -258,7 +258,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '[]" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '[]" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // OPTIONS
@@ -287,7 +287,7 @@ class Inline extends Renderer\Renderer {
         $html =  html('div', $element->getAttributes(), $options);
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 
@@ -335,8 +335,8 @@ class Inline extends Renderer\Renderer {
      */
     public function label(Form\Element\Label $element)
     {
-        $html = '<label class="col-md-3 control-label">' . $element->getLabel() . '</label>';
-        $html .= '<div class="col-md-9"><p class="form-control-static">' . $element->getValue() . '</p></div>';
+        $html = '<label class="col-sm-3 control-label col-form-label">' . $element->getLabel() . '</label>';
+        $html .= '<div class="col-sm-9"><p class="form-control-static">' . $element->getValue() . '</p></div>';
 
         $class =  Style::FORM_GROUP_CLASS . ' row';
         return html('div', compact('class'), $html);
@@ -350,8 +350,8 @@ class Inline extends Renderer\Renderer {
      */
     public function label_date(Form\Element\LabelDate $element)
     {
-        $html = '<label class="col-md-3 control-label">' . $element->getLabel() . '</label>';
-        $html .= '<div class="col-md-9"><p class="form-control-static">' . $element->getDisplayValue() . '</p></div>';
+        $html = '<label class="col-sm-3 control-label">' . $element->getLabel() . '</label>';
+        $html .= '<div class="col-sm-9"><p class="form-control-static">' . $element->getDisplayValue() . '</p></div>';
 
         $class =  Style::FORM_GROUP_CLASS . ' row';
         return html('div', compact('class'), $html);
@@ -366,8 +366,8 @@ class Inline extends Renderer\Renderer {
      */
     public function pre(Form\Element\Pre $element)
     {
-        $html = '<label class="col-md-3 control-label">' . $element->getLabel() . '</label>';
-        $html .= '<div class="col-md-9"><pre>' . $element->getValue() . '</pre></div>';
+        $html = '<label class="col-sm-3 control-label col-form-label">' . $element->getLabel() . '</label>';
+        $html .= '<div class="col-sm-9"><pre>' . $element->getValue() . '</pre></div>';
 
         $class =  Style::FORM_GROUP_CLASS . ' row';
         return html('div', compact('class'), $html);
@@ -386,8 +386,8 @@ class Inline extends Renderer\Renderer {
         $element->addStyle('object-fit', 'cover !important;');
         $element->addAttribute('src', $element->getValue());
 
-        $html = '<label class="col-md-3 control-label">' . $element->getLabel() . '</label>';
-        $html .= '<div class="col-md-9"><p class="form-control-static">' . html('img', $element->getAttributes()) . '</p></div>';
+        $html = '<label class="col-sm-3 control-label col-form-label">' . $element->getLabel() . '</label>';
+        $html .= '<div class="col-sm-9"><p class="form-control-static">' . html('img', $element->getAttributes()) . '</p></div>';
 
         $class =  Style::FORM_GROUP_CLASS . ' row';
         return html('div', compact('class'), $html);
@@ -403,8 +403,8 @@ class Inline extends Renderer\Renderer {
     public function link(Form\Element\Link $element)
     {
 
-        $html = '<label class="col-md-3 control-label">' . $element->getLabel() . '</label>';
-        $html .= '<div class="col-md-9"><p class="form-control-static">' .  html('a', ['href' => $element->getValue(), 'target' => '_blank'], $element->getValue())  . '</p></div>';
+        $html = '<label class="col-sm-3 control-label col-form-label">' . $element->getLabel() . '</label>';
+        $html .= '<div class="col-sm-9"><p class="form-control-static">' .  html('a', ['href' => $element->getValue(), 'target' => '_blank'], $element->getValue())  . '</p></div>';
 
         $class =  Style::FORM_GROUP_CLASS . ' row';
         return html('div', compact('class'), $html);
@@ -422,9 +422,9 @@ class Inline extends Renderer\Renderer {
         //@todo prendre en compte les option et les size
         $element->addClass('btn btn-default');
         $element->addAttribute('id', $element->getName());
-        $html  = '<div class="form-group">';
-        $html .= '<label class="col-md-3 control-label">&nbsp;</label>';
-        $html .= '<div class="col-md-9">' . html('button', $element->getAttributes(), $element->getLabel()) . '</div>';
+        $html  = '<div class="form-group row">';
+        $html .= '<label class="col-sm-3 control-label col-form-label">&nbsp;</label>';
+        $html .= '<div class="col-sm-9">' . html('button', $element->getAttributes(), $element->getLabel()) . '</div>';
         $html .= '</div>';
         return $html;
     }
@@ -458,8 +458,8 @@ class Inline extends Renderer\Renderer {
         if ($element->isFullWith()) {
             $html = '<div class="col-md-12">' . $element->getValue() . '</div>';
         } else {
-            $html = '<label class="col-md-3 control-label">' . $element->getLabel() . '</label>';
-            $html .= '<div class="col-md-9">' . $element->getValue() . '</div>';
+            $html = '<label class="col-sm-3 control-label col-form-label">' . $element->getLabel() . '</label>';
+            $html .= '<div class="col-sm-9">' . $element->getValue() . '</div>';
         }
 
         $class = Style::FORM_GROUP_CLASS;
@@ -494,7 +494,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // INPUT
@@ -507,7 +507,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 
@@ -519,7 +519,7 @@ class Inline extends Renderer\Renderer {
     public function radio(Form\Element\Radio $element)
     {
 
-        $html =  '<div class="form-group">';
+        $html =  '<div class="form-group row">';
         $html .= '<label for="'.$element->getName().'">' . $element->getLabel() . '</label>';
 
         $options = '';
@@ -554,7 +554,7 @@ class Inline extends Renderer\Renderer {
     public function select(Form\Element\Select $element)
     {
         // CLASS
-        $class =  Style::FORM_GROUP_CLASS;
+        $class =  Style::FORM_GROUP_CLASS . " row";
 
         // ERROR
         if($hasError = !$element->getValidator()->isValid()){
@@ -571,7 +571,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
 
@@ -606,7 +606,7 @@ class Inline extends Renderer\Renderer {
             $html .= html('span', ['class' => 'help-block'], $element->getDescription());
         }
 
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
 
         // FINAL CONTAINER
         return html('div', compact('class'), $label . $html ) . PHP_EOL;
@@ -646,7 +646,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // INPUT
@@ -660,7 +660,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 
@@ -675,7 +675,7 @@ class Inline extends Renderer\Renderer {
     {
 
         // CLASS
-        $class =  Style::FORM_GROUP_CLASS;
+        $class =  Style::FORM_GROUP_CLASS . ' row';
 
         // ERROR
         if($hasError = !$element->getValidator()->isValid()){
@@ -693,7 +693,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // INPUT
@@ -709,7 +709,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 
@@ -741,7 +741,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         $html = html('input', ['type' => 'text', 'class' => Style::FORM_ELEMENT_CONTROL, 'name' => $element->getFrom()]);
@@ -758,7 +758,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 
@@ -791,7 +791,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // INPUT
@@ -805,7 +805,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
 
     }
@@ -815,7 +815,7 @@ class Inline extends Renderer\Renderer {
     public function select2(Form\Element\SelectRemote $element)
     {
         // CLASS
-        $class =  Style::FORM_GROUP_CLASS;
+        $class =  Style::FORM_GROUP_CLASS . ' row';
 
         // ERROR
         if($hasError = !$element->getValidator()->isValid()){
@@ -833,7 +833,7 @@ class Inline extends Renderer\Renderer {
         // LABEL
         $label = '';
         if ($element->getForm()->hasLabel()) {
-            $label = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $label = '<label for="' . $element->getName() . '" class="col-sm-3 control-label col-form-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // INPUT
@@ -851,7 +851,7 @@ class Inline extends Renderer\Renderer {
         }
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9'], $html);
+        $html = html('div', ['class' => 'col-sm-9'], $html);
         return html('div', compact('class'), $label . $html);
     }
 }

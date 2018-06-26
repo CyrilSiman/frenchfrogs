@@ -299,7 +299,7 @@ class Bootstrap extends Renderer\Renderer {
 
         //@todo prendre en compte les option et les size
         $element->addClass('btn btn-default');
-        $html = '<div class="form-group">';
+        $html = '<div class="form-group row">';
         $html .= html('button', $element->getAttributes(), $element->getLabel());
         $html .= '</div>';
         return $html;
@@ -349,7 +349,7 @@ class Bootstrap extends Renderer\Renderer {
         }
 
         $element->addClass(Style::FORM_ELEMENT_CONTROL);
-        $html =  '<div class="form-group">';
+        $html =  '<div class="form-group row">';
         $html .= '<label for="'.$element->getName().'">' . $element->getLabel() . '</label>';
         $html .= html('input', $element->addAttribute('type', 'number')->getAttributes());
         $html .= '</div>';
@@ -358,7 +358,7 @@ class Bootstrap extends Renderer\Renderer {
 
     public function radio(Form\Element\Radio $element)
     {
-        $html =  '<div class="form-group">';
+        $html =  '<div class="form-group row">';
         $html .= '<label for="'.$element->getName().'">' . $element->getLabel() . '</label>';
 
         $options = '';
@@ -457,7 +457,7 @@ class Bootstrap extends Renderer\Renderer {
             $element->addAttribute('data-toggle', 'tooltip');
         }
 
-        $html =  '<div class="form-group">';
+        $html =  '<div class="form-group row">';
         $html .= '<label for="'.$element->getName().'">' . $element->getLabel() . '</label>';
         $element->addAttribute('type', 'file');
         $html .= html('input', $element->getAttributes());

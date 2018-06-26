@@ -56,7 +56,7 @@ class AdminLTE extends Inline
     {
 
         // CLASS
-        $class =  Style::FORM_GROUP_CLASS;
+        $class =  Style::FORM_GROUP_CLASS . " row";
 
         /// ERROR
         if($hasError = !$element->getValidator()->isValid()){
@@ -73,16 +73,16 @@ class AdminLTE extends Inline
         // LABEL
         $elementLabel = '';
         if ($element->getForm()->hasLabel()) {
-            $elementLabel = '<label for="' . $element->getName() . '[]" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $elementLabel = '<label for="' . $element->getName() . '[]" class="col-sm-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // OPTIONS
         $options = '';
         foreach($element->getOptions() as $value => $label){
             $opt = '';
-
+            $optId =  rand();
             // INPUT
-            $attr = ['type' => 'checkbox', 'name' => $element->getName() . '[]', 'value' => $value];
+            $attr = ['type' => 'checkbox', 'name' => $element->getName() . '[]', 'value' => $value, "id" => $optId, "style" => 'margin-left:0px', "class" => 'custom-control-input'];
 
             // VALUE
             $values = (array) $element->getValue();
@@ -91,8 +91,8 @@ class AdminLTE extends Inline
             }
 
             $opt .= html('input', $attr);
-            $opt .= $label;
-            $options .=  html('div', ['class' => 'checkbox'], '<label>'.$opt.'</label>');
+            //$opt .= $label;
+            $options .=  html('div', ['class' => 'checkbox custom-control custom-checkbox'], $opt .'<label class="custom-control-label" for="'.$optId.'">'.$label.'</label>');
         }
 
         // DESCRIPTION
@@ -104,7 +104,7 @@ class AdminLTE extends Inline
         $html =  html('div', [], $options);
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9 checkbox'], $html);
+        $html = html('div', ['class' => 'col-sm-9 checkbox'], $html);
         return html('div', compact('class'), $elementLabel . $html);
     }
 
@@ -117,7 +117,7 @@ class AdminLTE extends Inline
     {
 
         // CLASS
-        $class =  Style::FORM_GROUP_CLASS;
+        $class =  Style::FORM_GROUP_CLASS . ' row';
 
         /// ERROR
         if($hasError = !$element->getValidator()->isValid()){
@@ -134,7 +134,7 @@ class AdminLTE extends Inline
         // LABEL
         $elementLabel = '';
         if ($element->getForm()->hasLabel()) {
-            $elementLabel = '<label for="' . $element->getName() . '" class="col-md-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
+            $elementLabel = '<label for="' . $element->getName() . '" class="col-sm-3 control-label">' . $element->getLabel() . ($element->hasRule('required') ? ' *' : '') . '</label>';
         }
 
         // OPTIONS
@@ -165,7 +165,7 @@ class AdminLTE extends Inline
         $html =  html('div', [], $options);
 
         // FINAL CONTAINER
-        $html = html('div', ['class' => 'col-md-9 checkbox'], $html);
+        $html = html('div', ['class' => 'col-sm-12 checkbox'], $html);
         return html('div', compact('class'), $elementLabel . $html);
 
         return $html;
